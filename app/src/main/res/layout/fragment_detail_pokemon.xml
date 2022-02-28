@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/shape_bottom_sheet_bg"
+            android:minHeight="400dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvId"
+                style="@style/TextSubHeader"
+                android:layout_gravity="end"
+                android:text="@{StringUtils.pokemonStringId(pokemon.id)}" />
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/TextTitle"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="@{StringUtils.pokemonStringName(pokemon.name)}" />
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:indeterminate="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"
+                android:adapter="@{adapter}" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivPokemon"
+            imageUrl="@{pokemon.imageUrl}"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            tools:src="@drawable/no_image_available" />
+    </RelativeLayout>
+
+    <data>
+        <import type="com.pokemondemo.utils.StringUtils"/>
+
+        <variable
+            name="pokemon"
+            type="com.pokemondemo.api.model.Pokemon" />
+
+        <variable
+            name="adapter"
+            type="com.pokemondemo.ui.detail.PokemonStatAdapter" />
+    </data>
+</layout>

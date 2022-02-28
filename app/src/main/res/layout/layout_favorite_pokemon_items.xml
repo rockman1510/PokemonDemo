@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:layout_margin="8dp"
+        android:elevation="6dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
+
+        <RelativeLayout
+            android:id="@+id/rlRootView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> listener.onPokemonSelected(pokemon)}">
+
+            <ImageView
+                android:id="@+id/ivPokemon"
+                imageUrl="@{pokemon.imageUrl}"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                tools:src="@drawable/no_image_available" />
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/TextContent"
+                android:layout_below="@id/ivPokemon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@{StringUtils.pokemonStringName(pokemon.name)}" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <data>
+        <import type="com.pokemondemo.utils.StringUtils"/>
+        <variable
+            name="pokemon"
+            type="com.pokemondemo.api.model.Pokemon" />
+
+        <variable
+            name="listener"
+            type="com.pokemondemo.ui.PokemonSelectListener" />
+    </data>
+</layout>
